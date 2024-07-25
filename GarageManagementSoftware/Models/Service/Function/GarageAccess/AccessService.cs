@@ -1,14 +1,13 @@
 ﻿using GarageManagementSoftware.Models.Common;
 using GarageManagementSoftware.Models.ENITTY.Common;
 using GarageManagementSoftware.Models.ENITTY.DataSystem;
-using GarageManagementSoftware.Models.Interface.DataSystem;
+using GarageManagementSoftware.Models.Interface.Function.GarageAccess;
 
-namespace GarageManagementSoftware.Models.Service.DataSystem
+namespace GarageManagementSoftware.Models.Service.Function.GarageAccess
 {
-    public class AccountService : DataSystemCommon, IAccount
+    public class AccessService : DataSystemCommon, IAccess
     {
         public string tableName { get => this.tableName; set => this.tableName = "WorkFlowType"; }
-
         public StatusMessege<AccountModel> Delete(HttpRequest httpRequest, AccountModel model)
         {
             throw new NotImplementedException();

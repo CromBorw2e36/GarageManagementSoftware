@@ -1,6 +1,15 @@
-﻿namespace GarageManagementSoftware.Models.Interface.DataSystem
+﻿using GarageManagementSoftware.Models.ENITTY.Common;
+using GarageManagementSoftware.Models.ENITTY.DataSystem;
+
+namespace GarageManagementSoftware.Models.Interface.DataSystem
 {
     public interface IUser
     {
+        public string tableName { get; set; }
+        public List<UserModel> Get(HttpRequest httpRequest, UserModel model);
+        public StatusMessege<UserModel> Insert(HttpRequest httpRequest, UserModel model);
+        public StatusMessege<UserModel> Update(HttpRequest httpRequest, UserModel model);
+        public StatusMessege<UserModel> Delete(HttpRequest httpRequest, UserModel model);
+        public StatusMessege<UserModel> Search(HttpRequest httpRequest, UserModel model);
     }
 }
