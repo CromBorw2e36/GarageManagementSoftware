@@ -15,19 +15,22 @@
             this.data = data;
         }
 
-        public void setStatus(int i)
+        public StatusMessege<T> setStatus(int i)
         {
-            this.status = i;
+            status = i;
+            return this; 
         }
 
-        public void setMessenger(string p)
+        public StatusMessege<T> setMessage(string p)
         {
             this.messege = p;
+            return this;
         }
 
-        public void setData(T p)
+        public StatusMessege<T> setData(T p)
         {
             this.data = p;
+            return this;
         }
     }
 }

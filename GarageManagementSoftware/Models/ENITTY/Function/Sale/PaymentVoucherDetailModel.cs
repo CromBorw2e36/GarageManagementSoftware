@@ -21,7 +21,7 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public string? paymentVoucher_code { get; set; }
         
         [NotMapped]
-        public AccessModel access { get; set; }
+        public AccessModel? access { get; set; }
         public string? company_code { get; set; }
         public string? company_name { get; set; }
         [NotMapped]

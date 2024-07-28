@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.WorkFlow
 {
     public interface IWorkFlowType
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "WorkFlowType"; }
         public List<WorkFlowTypeModel> Get(HttpRequest httpRequest, WorkFlowTypeModel model);
         public StatusMessege<WorkFlowTypeModel> Insert(HttpRequest httpRequest, WorkFlowTypeModel model);
         public StatusMessege<WorkFlowTypeModel> Update(HttpRequest httpRequest, WorkFlowTypeModel model);

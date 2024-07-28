@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.GarageAccess
 {
     public interface IInventory
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "Inventory"; }
         public List<InventoryModel> Get(HttpRequest httpRequest, InventoryModel model);
         public StatusMessege<InventoryModel> Insert(HttpRequest httpRequest, InventoryModel model);
         public StatusMessege<InventoryModel> Update(HttpRequest httpRequest, InventoryModel model);

@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.WorkFlow
 {
     public interface ITask
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "Task"; }
         public List<TaskModel> Get(HttpRequest httpRequest, TaskModel model);
         public StatusMessege<TaskModel> Insert(HttpRequest httpRequest, TaskModel model);
         public StatusMessege<TaskModel> Update(HttpRequest httpRequest, TaskModel model);

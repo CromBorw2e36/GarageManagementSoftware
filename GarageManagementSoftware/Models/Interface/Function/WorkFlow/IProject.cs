@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.WorkFlow
 {
     public interface IProject
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "Project"; }
         public List<ProjectModel> Get(HttpRequest httpRequest, ProjectModel model);
         public StatusMessege<ProjectModel> Insert(HttpRequest httpRequest, ProjectModel model);
         public StatusMessege<ProjectModel> Update(HttpRequest httpRequest, ProjectModel model);

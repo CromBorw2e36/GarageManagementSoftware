@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.Employee
 {
     public interface ITypeEmployee
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "TypeEmployee"; }
         public List<TypeEmployeeModel> Get(HttpRequest httpRequest, TypeEmployeeModel model);
         public StatusMessege<TypeEmployeeModel> Insert(HttpRequest httpRequest, TypeEmployeeModel model);
         public StatusMessege<TypeEmployeeModel> Update(HttpRequest httpRequest, TypeEmployeeModel model);

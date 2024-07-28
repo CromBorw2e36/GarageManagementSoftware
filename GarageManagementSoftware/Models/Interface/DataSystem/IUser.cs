@@ -5,7 +5,7 @@ namespace GarageManagementSoftware.Models.Interface.DataSystem
 {
     public interface IUser
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "User"; }
         public List<UserModel> Get(HttpRequest httpRequest, UserModel model);
         public StatusMessege<UserModel> Insert(HttpRequest httpRequest, UserModel model);
         public StatusMessege<UserModel> Update(HttpRequest httpRequest, UserModel model);

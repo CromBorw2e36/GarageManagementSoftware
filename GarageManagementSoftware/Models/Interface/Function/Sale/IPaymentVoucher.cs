@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.Sale
 {
     public interface IPaymentVoucher
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "PaymentVoucher"; }
         public List<PaymentVoucherModel> Get(HttpRequest httpRequest, PaymentVoucherModel model);
         public StatusMessege<PaymentVoucherModel> Insert(HttpRequest httpRequest, PaymentVoucherModel model);
         public StatusMessege<PaymentVoucherModel> Update(HttpRequest httpRequest, PaymentVoucherModel model);

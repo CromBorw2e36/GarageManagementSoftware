@@ -1,4 +1,6 @@
 using GarageManagementSoftware.Models;
+using GarageManagementSoftware.Models.Common;
+using GarageManagementSoftware.Models.Service.DataSystem;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection"));
 });
+
+builder.Services.AddScoped<DataSystemCommon>(); // If needed, otherwise just use AccountService
 
 
 var app = builder.Build();

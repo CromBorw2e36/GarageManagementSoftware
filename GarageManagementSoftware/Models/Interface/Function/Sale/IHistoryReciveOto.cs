@@ -6,7 +6,7 @@ namespace GarageManagementSoftware.Models.Interface.Function.Sale
 {
     public interface IHistoryReciveOto
     {
-        public string tableName { get; set; }
+        public string tableName { get => this.tableName; set => this.tableName = "HistoryReciveOto"; }
         public List<HistoryReciveOtoModel> Get(HttpRequest httpRequest, HistoryReciveOtoModel model);
         public StatusMessege<HistoryReciveOtoModel> Insert(HttpRequest httpRequest, HistoryReciveOtoModel model);
         public StatusMessege<HistoryReciveOtoModel> Update(HttpRequest httpRequest, HistoryReciveOtoModel model);

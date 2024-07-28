@@ -7,7 +7,11 @@ namespace GarageManagementSoftware.Models.Service.Function.Sale
 {
     public class PaymentVoucherSerivce : DataSystemCommon, IPaymentVoucher
     {
-        public string tableName { get => this.tableName; set => this.tableName = "WorkFlowType"; }
+        public PaymentVoucherSerivce(DataContext dataContext) : base(dataContext)
+        {
+        }
+
+        public string tableName { get => this.tableName; set => this.tableName = "PaymentVoucher"; }
         public StatusMessege<PaymentVoucherModel> Delete(HttpRequest httpRequest, PaymentVoucherModel model)
         {
             throw new NotImplementedException();
