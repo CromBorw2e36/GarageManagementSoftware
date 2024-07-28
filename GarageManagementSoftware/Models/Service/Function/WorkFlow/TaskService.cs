@@ -84,6 +84,54 @@ namespace GarageManagementSoftware.Models.Service.Function.WorkFlow
                     var row = this._dataContext.TaskModel.Where(item => item.code == model.code).FirstOrDefault();
                     if (row != null)
                     {
+                        if (!string.IsNullOrEmpty(model.employee_code))
+                        {
+                            try
+                            {
+
+                                row.employee = this._dataContext.EmployeeModel.Where(x => x.code == model.employee_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.project_code))
+                        {
+                            try
+                            {
+
+                                row.project = this._dataContext.ProjectModel.Where(x => x.code == model.project_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.type_code))
+                        {
+                            try
+                            {
+
+                                row.type = this._dataContext.WorkFlowTypeModel.Where(x => x.code == model.type_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.status_code))
+                        {
+                            try
+                            {
+
+                                row.status = this._dataContext.WorkFlowStatusModel.Where(x => x.code == model.status_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+                        if (!string.IsNullOrEmpty(model.company_code))
+                        {
+                            try
+                            {
+
+                                row.company = this._dataContext.CompanyModel.Where(x => x.code == model.company_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
                         return new StatusMessege<TaskModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                     }
                     else

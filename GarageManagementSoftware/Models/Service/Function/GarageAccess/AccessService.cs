@@ -84,6 +84,27 @@ namespace GarageManagementSoftware.Models.Service.Function.GarageAccess
                     var row = this._dataContext.AccessModel.Where(item => item.code == model.code).FirstOrDefault();
                     if (row != null)
                     {
+
+                        if (!string.IsNullOrEmpty(model.inventory_code))
+                        {
+                            try
+                            {
+
+                                row.inventory = this._dataContext.InventoryModel.Where(x => x.code == model.inventory_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.company_code))
+                        {
+                            try
+                            {
+
+                                row.company = this._dataContext.CompanyModel.Where(x => x.code == model.company_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
                         return new StatusMessege<AccessModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                     }
                     else

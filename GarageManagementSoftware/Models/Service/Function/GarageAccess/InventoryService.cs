@@ -84,6 +84,16 @@ namespace GarageManagementSoftware.Models.Service.Function.GarageAccess
                     var row = this._dataContext.InventoryModel.Where(item => item.code == model.code).FirstOrDefault();
                     if (row != null)
                     {
+                        if (!string.IsNullOrEmpty(model.company_code))
+                        {
+                            try
+                            {
+
+                                row.company = this._dataContext.CompanyModel.Where(x => x.code == model.company_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
                         return new StatusMessege<InventoryModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                     }
                     else

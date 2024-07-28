@@ -85,6 +85,35 @@ namespace GarageManagementSoftware.Models.Service.Function.Sale
                     var row = this._dataContext.HistoryReciveOtoModel.Where(item => item.code == model.code).FirstOrDefault();
                     if (row != null)
                     {
+                        if (!string.IsNullOrEmpty(model.employee_code))
+                        {
+                            try
+                            {
+
+                                row.employee = this._dataContext.EmployeeModel.Where(x => x.code == model.employee_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.customer_code))
+                        {
+                            try
+                            {
+
+                                row.customer = this._dataContext.EmployeeModel.Where(x => x.code == model.employee_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
+
+                        if (!string.IsNullOrEmpty(model.company_code))
+                        {
+                            try
+                            {
+
+                                row.company = this._dataContext.CompanyModel.Where(x => x.code == model.company_code).FirstOrDefault();
+                            }
+                            catch { }
+                        }
                         return new StatusMessege<HistoryReciveOtoModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                     }
                     else

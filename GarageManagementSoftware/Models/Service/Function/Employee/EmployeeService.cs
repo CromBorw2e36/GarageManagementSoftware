@@ -84,6 +84,14 @@ namespace GarageManagementSoftware.Models.Service.Function.Employee
                     var row = this._dataContext.EmployeeModel.Where(item => item.code == model.code).FirstOrDefault();
                     if (row != null)
                     {
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(model.company_code))
+                            {
+                                row.company = this._dataContext.CompanyModel.Where(x => x.code == model.company_code).FirstOrDefault();
+                            }
+                        }   
+                        catch { }
                         return new StatusMessege<EmployeeModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                     }
                     else
