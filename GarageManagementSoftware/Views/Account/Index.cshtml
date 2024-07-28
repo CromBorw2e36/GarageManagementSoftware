@@ -1,0 +1,139 @@
+﻿@using GarageManagementSoftware.Models.ENITTY.DataSystem
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Danh sách tài khoản";
+    ViewData["navItemActive"] = "nav_id_account";
+    Layout = "~/Views/Shared/_ViewAdminstrator.cshtml";
+    var InputMaster = ViewData["InputMaster"] as List<AccountModel>;
+}
+
+
+
+
+<div class="page-header">
+    <h3 class="fw-bold mb-3">Tài khoản</h3>
+    <ul class="breadcrumbs mb-3">
+        <li class="nav-home">
+            <a href="#">
+                <i class="icon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Hệ thống</a>
+        </li>
+        <li class="separator">
+            <i class="icon-arrow-right"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Tài khoản</a>
+        </li>
+    </ul>
+</div>
+<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+    <div class="ms-md-auto py-2 py-md-0">
+        <a href="#" class="btn btn-primary btn-round">Thêm mới</a>
+        <a href="#" class="btn btn-primary btn-round">Chi tiết</a>
+        <a href="#" class="btn btn-primary btn-round">Xóa</a>
+    </div>
+</div>
+
+
+
+
+<div id="gridContainer"></div>
+
+
+<script>
+    $(() => {
+        // Chuyển đổi dữ liệu từ ViewData sang JSON
+        let inputData = @Html.Raw(JsonConvert.SerializeObject(ViewData["InputMaster"]));
+        let gridContainerRef = $('#gridContainer');
+        let selectedData = gridContainerRef.dxDataGrid('instance').getSelectedRowsData(); //  dòng dữ liệu trong grid
+
+        console.log(gridContainerRef)
+        $('#gridContainer').dxDataGrid({
+            dataSource: inputData,
+            keyExpr: "code",
+            columns: [
+                {
+                    dataField: "name",
+                    caption: "Tài khoản",
+                },
+                {
+                    dataField: "password",
+                    caption: "Mật khẩu",
+                },
+                {
+                    dataField: "create_at",
+                    caption: "Ngày tạo",
+                }
+            ],
+            selection: {
+                mode: 'single',
+            },
+            hoverStateEnabled: true,
+            showBorders: true,
+            focusedRowEnabled: true,
+            onSelectionChanged(selectedItems) {
+                const data = selectedItems.selectedRowsData[0];
+                console.log(selectedItems)
+                console.log(data)
+            },
+        });
+
+
+        class AccountSerivce {
+            handleActionClick(p) {
+                const { code, data } = p;
+                switch (code) {
+                    case "ADD": {
+
+                        break;
+                    }
+                    case "EDIT": {
+
+                        break;
+                    }
+                    case "VIEW": {
+
+                        break;
+                    }
+                    case "DELETE": {
+
+                        break;
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+
+@* <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tài khoản</th>
+            <th scope="col">Mật khẩu</th>
+            <th scope="col">Ngày tạo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < InputMaster?.Count; i++)
+        {
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@InputMaster[i]?.name</td>
+                <td>@InputMaster[i]?.password</td>
+                <td>@InputMaster[i]?.create_at?.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+
