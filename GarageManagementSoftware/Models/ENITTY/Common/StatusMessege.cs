@@ -14,5 +14,20 @@
             this.messege = messege;
             this.data = data;
         }
+
+        public void setStatus(int i)
+        {
+            this.status = i;
+        }
+
+        public void setMessenger(string p)
+        {
+            this.messege = p;
+        }
+
+        public void setData(T p)
+        {
+            this.data = p;
+        }
     }
 }

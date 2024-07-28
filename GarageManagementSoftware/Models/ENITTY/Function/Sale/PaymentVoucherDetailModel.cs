@@ -1,10 +1,10 @@
 ﻿using GarageManagementSoftware.Models.ENITTY.DataSystem;
-using GarageManagementSoftware.Models.ENITTY.Function.Employee;
+using GarageManagementSoftware.Models.ENITTY.Function.GarageAccess;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
 {
-    public class HistoryReciveOtoModel
+    public class PaymentVoucherDetailModel
     {
         public int? id { get; set; }
         public string? code { get; set; }
@@ -12,18 +12,16 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public string? description { get; set; }
         public bool? is_delete { get; set; }
         public bool? is_active { get; set; }
-        public string? employee_code { get; set; }
-        public string? employee_name { get; set; }
+        public double? price { get; set; }    
+        public double? tax_percent { get; set; }
+        public double? tax_price { get; set; }
+        public  double? price_total { get; set; }
+        public double? discount { get; set; }
+        public string? access_code {  get; set; }
+        public string? paymentVoucher_code { get; set; }
+        
         [NotMapped]
-        public EmployeeModel? employee { get; set; } 
-        public string? customer_code { get; set; }
-        public string? customer_name { get; set; }
-        [NotMapped]
-        public EmployeeModel? customer { get; set; }
-        public string? type_code { get; set; }  
-        public string? type_name { get; set; }
-        public string? status_code { get; set; }
-        public string? status_name { get; set; }
+        public AccessModel access { get; set; }
         public string? company_code { get; set; }
         public string? company_name { get; set; }
         [NotMapped]
