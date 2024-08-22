@@ -27,7 +27,10 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         [NotMapped]
         public InventoryModel? inventory { get; set; }
         public string? historyReviceOto_code { get; set; }
+        [NotMapped]
         public HistoryReciveOtoModel? historyReviceOto { get; set; }
+        [NotMapped]
+        public List<RecieptVoucherDetailModel>? detail { get; set; }
         public string? company_code { get; set; }
         public string? company_name { get; set; }
         [NotMapped]

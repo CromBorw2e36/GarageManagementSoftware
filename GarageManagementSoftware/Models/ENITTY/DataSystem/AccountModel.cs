@@ -1,4 +1,6 @@
-﻿namespace GarageManagementSoftware.Models.ENITTY.DataSystem
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GarageManagementSoftware.Models.ENITTY.DataSystem
 {
     public class AccountModel
     {
@@ -16,5 +18,9 @@
         public string? create_by { get; set; }
         public string? update_by { get; set; }
         public string? delete_by { get; set; }
+        [NotMapped]
+        public AccountModel? account { get; set; }
+        [NotMapped]
+        public UserModel? user { get; set; }
     }
 }

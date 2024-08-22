@@ -1,12 +1,14 @@
 ﻿namespace GarageManagementSoftware.Models.ENITTY.DataSystem
 {
-    public class PermissionModel
+    public class ActionForUserModel
     {
         public string? id { get; set; }
         public string? code { get; set; }
-        public string? name { get; set; }
-        public string? description { get; set; }
+        public string? table { get; set; }
         public bool? is_delete { get; set; }
+        public bool? is_add { get; set; }
+        public bool? is_view { get; set; }
+        public string? description { get; set; }
         public bool? is_active { get; set; }
         public DateTime? create_at { get; set; }
         public DateTime? update_at { get; set; }

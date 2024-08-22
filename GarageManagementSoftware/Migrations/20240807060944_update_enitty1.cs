@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GarageManagementSoftware.Migrations
 {
     /// <inheritdoc />
-    public partial class first_migration : Migration
+    public partial class update_enitty1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     prive_buy = table.Column<double>(type: "float", nullable: true),
@@ -45,7 +45,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     password2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -65,11 +65,35 @@ namespace GarageManagementSoftware.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ActionForUser",
+                columns: table => new
+                {
+                    code = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
+                    table = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    is_add = table.Column<bool>(type: "bit", nullable: true),
+                    is_view = table.Column<bool>(type: "bit", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    is_active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    create_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    update_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    delete_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    create_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    update_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    delete_by = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActionForUser", x => x.code);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Company",
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -91,7 +115,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -113,7 +137,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -135,7 +159,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -167,7 +191,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -187,11 +211,47 @@ namespace GarageManagementSoftware.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentVoucher",
+                columns: table => new
+                {
+                    code = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    is_active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    price = table.Column<double>(type: "float", nullable: true),
+                    tax_percent = table.Column<double>(type: "float", nullable: true),
+                    tax_price = table.Column<double>(type: "float", nullable: true),
+                    price_total = table.Column<double>(type: "float", nullable: true),
+                    discount = table.Column<double>(type: "float", nullable: true),
+                    payment_total = table.Column<double>(type: "float", nullable: true),
+                    payment_received = table.Column<double>(type: "float", nullable: true),
+                    payment_change = table.Column<double>(type: "float", nullable: true),
+                    is_payment = table.Column<bool>(type: "bit", nullable: true),
+                    is_quote = table.Column<bool>(type: "bit", nullable: true),
+                    print_count = table.Column<double>(type: "float", nullable: true),
+                    historyReviceOto_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    company_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    company_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    create_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    update_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    delete_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    create_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    update_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    delete_by = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentVoucher", x => x.code);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PaymentVoucherDetail",
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -222,7 +282,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -244,7 +304,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -264,11 +324,48 @@ namespace GarageManagementSoftware.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RecieptVoucher",
+                columns: table => new
+                {
+                    code = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    is_active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    price = table.Column<double>(type: "float", nullable: true),
+                    tax_percent = table.Column<double>(type: "float", nullable: true),
+                    tax_price = table.Column<double>(type: "float", nullable: true),
+                    price_total = table.Column<double>(type: "float", nullable: true),
+                    discount = table.Column<double>(type: "float", nullable: true),
+                    payment_total = table.Column<double>(type: "float", nullable: true),
+                    payment_received = table.Column<double>(type: "float", nullable: true),
+                    payment_change = table.Column<double>(type: "float", nullable: true),
+                    is_payment = table.Column<bool>(type: "bit", nullable: true),
+                    is_quote = table.Column<bool>(type: "bit", nullable: true),
+                    inventory_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    inventory_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    historyReviceOto_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    company_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    company_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    create_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    update_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    delete_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    create_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    update_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    delete_by = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecieptVoucher", x => x.code);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RecieptVoucherDetail",
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -299,7 +396,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     status_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -330,7 +427,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -352,7 +449,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -374,7 +471,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     birthday = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -398,7 +495,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -420,7 +517,7 @@ namespace GarageManagementSoftware.Migrations
                 columns: table => new
                 {
                     code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
+                    id = table.Column<int>(type: "int", nullable: true, defaultValueSql: "(newid())"),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
@@ -435,91 +532,6 @@ namespace GarageManagementSoftware.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkFlowType", x => x.code);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PaymentVoucher",
-                columns: table => new
-                {
-                    code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
-                    is_active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
-                    price = table.Column<double>(type: "float", nullable: true),
-                    tax_percent = table.Column<double>(type: "float", nullable: true),
-                    tax_price = table.Column<double>(type: "float", nullable: true),
-                    price_total = table.Column<double>(type: "float", nullable: true),
-                    discount = table.Column<double>(type: "float", nullable: true),
-                    payment_total = table.Column<double>(type: "float", nullable: true),
-                    payment_received = table.Column<double>(type: "float", nullable: true),
-                    payment_change = table.Column<double>(type: "float", nullable: true),
-                    is_payment = table.Column<bool>(type: "bit", nullable: true),
-                    is_quote = table.Column<bool>(type: "bit", nullable: true),
-                    print_count = table.Column<double>(type: "float", nullable: true),
-                    historyReviceOto_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    historyReviceOtocode = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    company_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    company_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    create_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    update_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    delete_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    create_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    update_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    delete_by = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PaymentVoucher", x => x.code);
-                    table.ForeignKey(
-                        name: "FK_PaymentVoucher_HistoryReciveOto_historyReviceOtocode",
-                        column: x => x.historyReviceOtocode,
-                        principalTable: "HistoryReciveOto",
-                        principalColumn: "code");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RecieptVoucher",
-                columns: table => new
-                {
-                    code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    id = table.Column<int>(type: "int", nullable: true),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    is_delete = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
-                    is_active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
-                    price = table.Column<double>(type: "float", nullable: true),
-                    tax_percent = table.Column<double>(type: "float", nullable: true),
-                    tax_price = table.Column<double>(type: "float", nullable: true),
-                    price_total = table.Column<double>(type: "float", nullable: true),
-                    discount = table.Column<double>(type: "float", nullable: true),
-                    payment_total = table.Column<double>(type: "float", nullable: true),
-                    payment_received = table.Column<double>(type: "float", nullable: true),
-                    payment_change = table.Column<double>(type: "float", nullable: true),
-                    is_payment = table.Column<bool>(type: "bit", nullable: true),
-                    is_quote = table.Column<bool>(type: "bit", nullable: true),
-                    inventory_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    inventory_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    historyReviceOto_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    historyReviceOtocode = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    company_code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    company_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    create_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    update_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    delete_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    create_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    update_by = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    delete_by = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RecieptVoucher", x => x.code);
-                    table.ForeignKey(
-                        name: "FK_RecieptVoucher_HistoryReciveOto_historyReviceOtocode",
-                        column: x => x.historyReviceOtocode,
-                        principalTable: "HistoryReciveOto",
-                        principalColumn: "code");
                 });
 
             migrationBuilder.CreateTable(
@@ -543,16 +555,6 @@ namespace GarageManagementSoftware.Migrations
                         principalColumn: "code",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PaymentVoucher_historyReviceOtocode",
-                table: "PaymentVoucher",
-                column: "historyReviceOtocode");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RecieptVoucher_historyReviceOtocode",
-                table: "RecieptVoucher",
-                column: "historyReviceOtocode");
         }
 
         /// <inheritdoc />
@@ -565,6 +567,9 @@ namespace GarageManagementSoftware.Migrations
                 name: "Account");
 
             migrationBuilder.DropTable(
+                name: "ActionForUser");
+
+            migrationBuilder.DropTable(
                 name: "Company");
 
             migrationBuilder.DropTable(
@@ -575,6 +580,9 @@ namespace GarageManagementSoftware.Migrations
 
             migrationBuilder.DropTable(
                 name: "EmployeeStatus");
+
+            migrationBuilder.DropTable(
+                name: "HistoryReciveOto");
 
             migrationBuilder.DropTable(
                 name: "Inventory");
@@ -614,9 +622,6 @@ namespace GarageManagementSoftware.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
-
-            migrationBuilder.DropTable(
-                name: "HistoryReciveOto");
         }
     }
 }

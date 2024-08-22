@@ -24,7 +24,10 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public bool? is_quote { get; set; } // Đã báo giá
         public double? print_count { get; set; } // Số lần in chứng từ
         public string? historyReviceOto_code { get; set; } // Phiếu nhận xe
+        [NotMapped]
         public HistoryReciveOtoModel? historyReviceOto { get; set; }
+        [NotMapped]
+        public List<PaymentVoucherDetailModel>? detail { get; set; }
         public string? company_code { get; set; }
         public string? company_name { get; set; }
         [NotMapped]

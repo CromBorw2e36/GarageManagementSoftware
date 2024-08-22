@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GarageManagementSoftware.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240728030316_first_migration")]
-    partial class first_migration
+    [Migration("20240807060944_update_enitty1")]
+    partial class update_enitty1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,8 +45,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("id")
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -93,7 +95,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -125,6 +129,61 @@ namespace GarageManagementSoftware.Migrations
                     b.ToTable("Account", (string)null);
                 });
 
+            modelBuilder.Entity("GarageManagementSoftware.Models.ENITTY.DataSystem.ActionForUserModel", b =>
+                {
+                    b.Property<string>("code")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("create_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("create_by")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("delete_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("delete_by")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
+
+                    b.Property<bool?>("is_active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool?>("is_add")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("is_delete")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool?>("is_view")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("table")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("update_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("update_by")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("code");
+
+                    b.ToTable("ActionForUser", (string)null);
+                });
+
             modelBuilder.Entity("GarageManagementSoftware.Models.ENITTY.DataSystem.CompanyModel", b =>
                 {
                     b.Property<string>("code")
@@ -146,7 +205,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -192,8 +253,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("id")
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -246,7 +309,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -295,7 +360,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -342,7 +409,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -389,7 +458,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -441,8 +512,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("id")
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<string>("inventory_code")
                         .HasColumnType("nvarchar(max)");
@@ -509,8 +582,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("id")
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -575,7 +650,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -646,7 +723,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("float");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -719,11 +798,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("historyReviceOto_code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("historyReviceOtocode")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -776,8 +854,6 @@ namespace GarageManagementSoftware.Migrations
 
                     b.HasKey("code");
 
-                    b.HasIndex("historyReviceOtocode");
-
                     b.ToTable("PaymentVoucher", (string)null);
                 });
 
@@ -814,7 +890,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("float");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -887,11 +965,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("historyReviceOto_code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("historyReviceOtocode")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<string>("inventory_code")
                         .HasColumnType("nvarchar(max)");
@@ -947,8 +1024,6 @@ namespace GarageManagementSoftware.Migrations
 
                     b.HasKey("code");
 
-                    b.HasIndex("historyReviceOtocode");
-
                     b.ToTable("RecieptVoucher", (string)null);
                 });
 
@@ -979,7 +1054,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -1034,8 +1111,10 @@ namespace GarageManagementSoftware.Migrations
                     b.Property<string>("employee_code")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("id")
-                        .HasColumnType("int");
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -1100,7 +1179,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -1147,7 +1228,9 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<bool?>("is_active")
                         .ValueGeneratedOnAdd()
@@ -1193,24 +1276,6 @@ namespace GarageManagementSoftware.Migrations
                         .HasColumnType("bit");
 
                     b.ToTable("Employee", (string)null);
-                });
-
-            modelBuilder.Entity("GarageManagementSoftware.Models.ENITTY.Function.Sale.PaymentVoucherModel", b =>
-                {
-                    b.HasOne("GarageManagementSoftware.Models.ENITTY.Function.Sale.HistoryReciveOtoModel", "historyReviceOto")
-                        .WithMany()
-                        .HasForeignKey("historyReviceOtocode");
-
-                    b.Navigation("historyReviceOto");
-                });
-
-            modelBuilder.Entity("GarageManagementSoftware.Models.ENITTY.Function.Sale.RecieptVoucherModel", b =>
-                {
-                    b.HasOne("GarageManagementSoftware.Models.ENITTY.Function.Sale.HistoryReciveOtoModel", "historyReviceOto")
-                        .WithMany()
-                        .HasForeignKey("historyReviceOtocode");
-
-                    b.Navigation("historyReviceOto");
                 });
 
             modelBuilder.Entity("GarageManagementSoftware.Models.ENITTY.Function.Employee.EmployeeModel", b =>

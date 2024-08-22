@@ -42,6 +42,7 @@ namespace GarageManagementSoftware.Models.Service.DataSystem
         {
             var row = this._dataContext.UserModel.Where(item =>
                 string.IsNullOrEmpty(model.code) ? true : item.code == model.code
+                || (model.is_delete == null || model.is_delete == item.is_delete)
             ).ToList();
             return row;
         }

@@ -34,9 +34,9 @@
 </div>
 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
     <div class="ms-md-auto py-2 py-md-0">
-        <a href="#" class="btn btn-primary btn-round">Thêm mới</a>
-        <a href="#" class="btn btn-primary btn-round">Chi tiết</a>
-        <a href="#" class="btn btn-primary btn-round">Xóa</a>
+        <a href="#" class="btn btn-round">Thêm mới</a>
+        <a href="#" class="btn btn-round">Chi tiết</a>
+        <a href="#" class="btn btn-round">Xóa</a>
     </div>
 </div>
 
@@ -50,51 +50,86 @@
     $(() => {
         // Chuyển đổi dữ liệu từ ViewData sang JSON
         let inputData = @Html.Raw(JsonConvert.SerializeObject(ViewData["InputMaster"]));
-        let gridContainerRef = $('#gridContainer');
-        let selectedData = gridContainerRef.dxDataGrid('instance').getSelectedRowsData(); //  dòng dữ liệu trong grid
 
-        console.log(gridContainerRef)
-        $('#gridContainer').dxDataGrid({
-            dataSource: inputData,
-            keyExpr: "code",
-            columns: [
-                {
-                    dataField: "name",
-                    caption: "Tài khoản",
-                },
-                {
-                    dataField: "password",
-                    caption: "Mật khẩu",
-                },
-                {
-                    dataField: "create_at",
-                    caption: "Ngày tạo",
-                }
-            ],
-            selection: {
-                mode: 'single',
-            },
-            hoverStateEnabled: true,
-            showBorders: true,
-            focusedRowEnabled: true,
-            onSelectionChanged(selectedItems) {
-                const data = selectedItems.selectedRowsData[0];
-                console.log(selectedItems)
-                console.log(data)
-            },
-        });
-
+        enum actionCode {
+            ADD = "ADD",
+            EDIT = "EDIT",
+            VIEW = "VIEW",
+            DELETE = "DELETE",
+        }
 
         class AccountSerivce {
+
+
+
+            columnsDataGrid; // columns of data grid
+
+            gridContainerRef;// Ref data grid
+
+            constructor() {
+                this.columnsDataGrid = [
+                    {
+                        dataField: "name",
+                        caption: "Tài khoản",
+                        align: 'left',
+                    },
+                    {
+                        dataField: "password",
+                        caption: "Mật khẩu",
+                        align: 'left',
+                    },
+                    {
+                        dataField: "create_at",
+                        caption: "Ngày tạo",
+                        align: 'center',
+                    }
+                ]
+                this.gridContainerRef = undefined;
+
+            }
+
+            getDataGrid() {
+                gridContainerRef = $('#gridContainer');
+            }
+
+            getSelectedRowsData() {
+                if (this.gridContainerRef == undefined) {
+                    return [];
+                } else {
+                    let selectedData = this.gridContainerRef.dxDataGrid('instance').getSelectedRowsData(); //  dòng dữ liệu trong grid
+                    return selectedData;
+                }
+            }
+
+            onLoadDataSource(data) {
+                if (this.gridContainerRef == undefined) {
+                    this.getDataGrid();
+                }
+                this.gridContainerRef.dxDataGrid({
+                    dataSource: data,
+                    keyExpr: "code",
+                    columns: this.columnsDataGrid,
+                    selection: { mode: 'single', },
+                    hoverStateEnabled: true,
+                    showBorders: true,
+                    focusedRowEnabled: true,
+                    onSelectionChanged(selectedItems) {
+                        const data = selectedItems.selectedRowsData[0];
+                        console.log(selectedItems)
+                        console.log(data)
+                    },
+                });
+            }
+
             handleActionClick(p) {
                 const { code, data } = p;
                 switch (code) {
                     case "ADD": {
-
+                        InsertItem();
                         break;
                     }
                     case "EDIT": {
-
+                        EditItem();
                         break;
                     }
                     case "VIEW": {
@@ -107,7 +142,15 @@
                     }
                 }
             }
+
+            genEventListenterAddItem(idBtn, codeAciton) {
+                if (!idBtn) { alert('Lỗi cấu hình phần mềm ở hàm genEventListenterAddItem'); }
+                else { $(`#${idBtn}`).on('click', this.handleActionClick({ code: codeAciton, data: undefined }) }
+            }
         }
+
+        const accountSerivce = new AccountSerivce();
+        accountSerivce.onLoadDataSource(inputData);
     });
 </script>
 
