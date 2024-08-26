@@ -58,7 +58,7 @@ namespace GarageManagementSoftware.Models.Service.Function.Sale
             {
                 try
                 {
-                    model.code = this.GenRowCode();
+                    model.code = this.GenRowCode(EnumTypeVoucher.VOUCHER_1);
                     model.create_at = DateTime.Now;
                     model.update_at = DateTime.Now;
                     this._dataContext.HistoryReciveOtoModel.Add(model);

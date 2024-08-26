@@ -55,11 +55,12 @@ namespace GarageManagementSoftware.Models.Service.Function.Sale
             {
                 try
                 {
-                    model.code = this.GenRowCode();
+                    model.code = this.GenRowCode(EnumTypeVoucher.RECIEPT);
                     model.create_at = DateTime.Now;
                     model.update_at = DateTime.Now;
                     this._dataContext.RecieptVoucherModel.Add(model);
                     this._dataContext.SaveChanges();
+
                     return new StatusMessege<RecieptVoucherModel>().setStatus(EnumMessage.SUCCESS.GetStatus()).setMessage(EnumMessage.SUCCESS.GetMessage()).setData(model);
                 }
                 catch

@@ -9,6 +9,7 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public int? id { get; set; }
         public string? code { get; set; }
         public string? name { get; set; }
+        public string? document_number { get; set; } // Số chứng từ
         public string? description { get; set; }
         public bool? is_delete { get; set; }
         public bool? is_active { get; set; }
@@ -24,6 +25,8 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public bool? is_quote { get; set; } // Đã báo giá
         public string? inventory_code { get; set; }
         public string? inventory_name { get; set; }
+        public string? sign { get; set; } // Chữ ký
+        public string? accounting_number { get; set; } // Tài khoản kế toán
         [NotMapped]
         public InventoryModel? inventory { get; set; }
         public string? historyReviceOto_code { get; set; }

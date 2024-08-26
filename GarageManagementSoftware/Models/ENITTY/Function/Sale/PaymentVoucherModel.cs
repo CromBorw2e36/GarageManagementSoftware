@@ -8,6 +8,7 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
     {
         public int? id { get; set; }
         public string? code { get; set; }
+        public string? document_number { get; set; }
         public string? name { get; set; }
         public string? description { get; set; }
         public bool? is_delete { get; set; }
@@ -15,15 +16,17 @@ namespace GarageManagementSoftware.Models.ENITTY.Function.Sale
         public double? price { get; set; }    // Thành tiền
         public double? tax_percent { get; set; } // % thuế
         public double? tax_price { get; set; } // Thành tiền thuế
-        public  double? price_total { get; set; } // Tổng tiền chưa thuế
+        public double? price_total { get; set; } // Tổng tiền chưa thuế
         public double? discount { get; set; } // Tiền giảm giá
         public double? payment_total { get; set; } // Tổng tiền thanh toán
-        public double? payment_received { get; set;} // Số tiền nhận từ khách hàng
+        public double? payment_received { get; set; } // Số tiền nhận từ khách hàng
         public double? payment_change { get; set; } // Tiền thối lại khách hàng
         public bool? is_payment { get; set; } // Đã thanh toán
         public bool? is_quote { get; set; } // Đã báo giá
         public double? print_count { get; set; } // Số lần in chứng từ
         public string? historyReviceOto_code { get; set; } // Phiếu nhận xe
+        public string? sign { get; set; }
+        public string? accounting_number { get; set; }
         [NotMapped]
         public HistoryReciveOtoModel? historyReviceOto { get; set; }
         [NotMapped]
